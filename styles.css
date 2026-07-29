@@ -66,6 +66,14 @@ button { font: inherit; }
 .brand.small { font-size: 14px; }
 .brand.small .brand-mark { width: 29px; height: 29px; font-size: 17px; }
 
+.brand-button {
+  border: 0;
+  padding: 0;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+}
+
 .hero-art {
   position: relative;
   margin: 28px auto 20px;
@@ -152,6 +160,69 @@ h1 em { color: var(--orange); font-weight: inherit; }
 .primary:disabled { background: #b5c5c0; box-shadow: none; cursor: not-allowed; transform: none; }
 .primary span { float: right; font-size: 20px; }
 .microcopy, .quiet, .source-note { font-size: 12px; color: #7d8f8a; margin: 15px 0 0; }
+
+.level-home {
+  width: min(100%, 840px);
+}
+
+.level-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 30px 0 18px;
+  text-align: left;
+}
+
+.level-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 292px;
+  padding: 24px;
+  overflow: hidden;
+  border: 1px solid #dce6dc;
+  border-radius: 24px;
+  background: white;
+}
+
+.level-card.advanced {
+  color: white;
+  border-color: transparent;
+  background: linear-gradient(145deg, #255f53, #163f38);
+}
+
+.level-number {
+  position: absolute;
+  right: 18px;
+  top: 8px;
+  color: rgba(23, 63, 56, .08);
+  font-family: Georgia, serif;
+  font-size: 70px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.advanced .level-number { color: rgba(255,255,255,.08); }
+.level-tag { color: var(--orange); font-size: 11px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+.level-card h2 { position: relative; margin: 26px 0 8px; font-family: Georgia, serif; font-size: 28px; line-height: 1.05; }
+.level-card p { position: relative; margin: 0; color: #60766f; font-size: 14px; line-height: 1.5; }
+.level-card.advanced p { color: #d9e8e2; }
+.level-card small { display: block; margin: auto 0 16px; color: #789088; font-weight: 700; }
+.level-card.advanced small { color: #bcd2ca; }
+
+.secondary {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 18px;
+  border: 1px solid #b8cec4;
+  border-radius: 16px;
+  color: var(--green);
+  background: white;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.secondary span { float: right; }
 
 .quiz header {
   display: flex;
@@ -263,6 +334,149 @@ h1 em { color: var(--orange); font-weight: inherit; }
 .options button i { font-style: normal; font-weight: 900; color: var(--green); text-align: right; }
 .next { margin-top: 5px; }
 
+.applied {
+  width: min(100%, 680px);
+}
+
+.meal-progress {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin: -13px 0 24px;
+}
+
+.meal-progress span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 8px;
+  border: 1px solid #e0e7e1;
+  border-radius: 999px;
+  color: #84938e;
+  background: white;
+  font-size: 12px;
+}
+
+.meal-progress span.done { color: var(--green); background: #e9f2e9; }
+.meal-progress i { width: 6px; height: 6px; border-radius: 50%; }
+
+.case-card {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin: 18px 0 20px;
+  padding: 16px;
+  border: 1px solid #dfe8df;
+  border-radius: 18px;
+  background: white;
+  text-align: left;
+}
+
+.case-card.mini { padding: 12px 15px; }
+.case-icon { font-size: 35px; }
+.case-card p { margin: 3px 0; color: #5e756d; font-size: 14px; line-height: 1.45; }
+.case-card .food-name { color: var(--orange); font-size: 15px; }
+.step-label { margin: 10px 0 4px; color: var(--green); font-size: 11px; font-weight: 900; letter-spacing: .12em; }
+.options.compact { margin-top: 18px; }
+.options.compact button { font-size: 14px; }
+
+.feedback-slot:empty { display: none; }
+.feedback {
+  margin: 14px 0;
+  padding: 13px 15px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.feedback.error { color: #733c2d; border: 1px solid #efc8bb; background: #fff0e9; }
+.feedback.success { color: #205e50; border: 1px solid #bddacb; background: #e7f4eb; }
+
+.nutrient-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 11px;
+  margin: 20px 0 8px;
+  text-align: left;
+}
+
+.nutrient-form label {
+  padding: 12px;
+  border: 1px solid #dce6dd;
+  border-radius: 15px;
+  background: white;
+}
+
+.nutrient-form label > span {
+  display: block;
+  min-height: 28px;
+  color: #5b726a;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.nutrient-form label > div { display: flex; align-items: center; gap: 7px; }
+.nutrient-form input {
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  padding: 8px 10px;
+  border: 1px solid #cbd9d0;
+  border-radius: 10px;
+  color: var(--ink);
+  background: #fbfdf9;
+  font: 800 20px var(--font-sans);
+}
+.nutrient-form input:focus { outline: 3px solid rgba(30,102,86,.15); border-color: var(--green); }
+.nutrient-form b { color: #70837d; font-size: 12px; }
+.decimal-note { margin: 6px 0 12px; color: #879690; font-size: 11px; }
+
+.answer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px 12px;
+  margin-top: 8px;
+}
+.answer-grid span { white-space: nowrap; }
+
+.success-mark {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  margin: 32px auto 14px;
+  border-radius: 50%;
+  color: white;
+  background: var(--green);
+  box-shadow: 0 12px 25px rgba(30,102,86,.22);
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.result-macros {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 25px 0 18px;
+}
+
+.result-macros div {
+  padding: 14px 6px;
+  border: 1px solid #dfe7df;
+  border-radius: 14px;
+  background: white;
+}
+
+.result-macros strong { display: block; font-family: Georgia, serif; font-size: 25px; }
+.result-macros span { color: #71847e; font-size: 11px; }
+.calculation-note { margin: 0 0 22px; color: #60756e; font-size: 13px; line-height: 1.55; }
+.advanced-ring { background: conic-gradient(var(--green) var(--score), #e8ece5 0); }
+.takeaway { padding: 20px; border: 1px solid #d9e5da; border-radius: 18px; background: #edf5eb; }
+.takeaway p { margin: 0; color: #536e65; line-height: 1.55; }
+.button-stack { display: grid; gap: 10px; }
+.text-button { min-height: 46px; border: 0; color: var(--green); background: transparent; font-weight: 800; cursor: pointer; }
+
 .score-ring {
   --score: 0deg;
   display: grid;
@@ -336,6 +550,17 @@ h1 em { color: var(--orange); font-weight: inherit; }
   .quiz h1 { font-size: 29px; }
   .food-icon { width: 82px; height: 82px; font-size: 44px; margin-top: 16px; }
   .options { margin-top: 18px; }
+  .level-home { display: block; }
+  .level-grid { grid-template-columns: 1fr; }
+  .level-card { min-height: 250px; }
+  .level-home h1 { font-size: 38px; }
+  .meal-progress { gap: 4px; }
+  .meal-progress span { padding: 5px 7px; font-size: 0; }
+  .meal-progress span i { margin-right: 1px; }
+  .case-card { align-items: flex-start; }
+  .nutrient-form { grid-template-columns: 1fr 1fr; }
+  .result-macros { grid-template-columns: repeat(2, 1fr); }
+  .answer-grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
