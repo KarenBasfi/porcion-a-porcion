@@ -29,15 +29,32 @@ const LEVEL_ONE = [
 const MACROS = {
   cereal: { label: "cereal", energy: 140, carbs: 30, protein: 3, fat: 1 },
   vegetable: { label: "verdura", energy: 30, carbs: 5, protein: 2, fat: 0 },
+  freeVegetable: { label: "verdura de libre consumo", energy: 10, carbs: 2.5, protein: 0, fat: 0 },
   fruit: { label: "fruta", energy: 65, carbs: 15, protein: 1, fat: 0 },
   dairyLow: { label: "lácteo bajo en grasa", energy: 70, carbs: 10, protein: 7, fat: 0 },
   dairyMedium: { label: "lácteo medio en grasa", energy: 85, carbs: 9, protein: 5, fat: 3 },
   dairyHigh: { label: "lácteo alto en grasa", energy: 110, carbs: 9, protein: 5, fat: 6 },
   proteinLow: { label: "carne baja en grasa", energy: 65, carbs: 1, protein: 11, fat: 2 },
+  proteinHigh: { label: "carne alta en grasa", energy: 120, carbs: 1, protein: 11, fat: 8 },
   legume: { label: "leguminosa", energy: 170, carbs: 30, protein: 11, fat: 1 },
   fat: { label: "aceite o grasa", energy: 180, carbs: 0, protein: 0, fat: 20 },
-  fatRich: { label: "alimento rico en lípidos", energy: 175, carbs: 8, protein: 5, fat: 15 },
+  sugar: { label: "azúcar", energy: 20, carbs: 5, protein: 0, fat: 0 },
 };
+
+const REFERENCE_ORDER = [
+  ["cereal", "Cereales, papas y leg. frescas"],
+  ["vegetable", "Verduras en general"],
+  ["freeVegetable", "Verduras de libre consumo"],
+  ["fruit", "Frutas"],
+  ["proteinHigh", "Carnes altas en grasa"],
+  ["proteinLow", "Carnes bajas en grasa"],
+  ["dairyHigh", "Lácteos altos en grasa"],
+  ["dairyMedium", "Lácteos medios en grasa"],
+  ["dairyLow", "Lácteos bajos en grasa"],
+  ["legume", "Leguminosas secas"],
+  ["fat", "Aceites y grasas"],
+  ["sugar", "Azúcares"],
+];
 
 const MEAL_META = {
   Desayuno: ["#E68A45", "🌤️"],
@@ -50,11 +67,11 @@ const MEAL_META = {
 const LEVEL_TWO = [
   {
     meal: "Desayuno", title: "Avena con leche y frutillas",
-    description: "½ taza de avena (8 cucharadas), 1 taza de leche descremada y ½ taza de frutillas.",
-    exchanges: [["cereal",4/3],["dairyLow",1],["fruit",.5]],
-    correct: "1⅓ cereal + 1 lácteo bajo en grasa + ½ fruta",
+    description: "½ taza de avena (40 g o 6 cucharadas), 1 taza de leche descremada y ½ taza de frutillas.",
+    exchanges: [["cereal",1],["dairyLow",1],["fruit",.5]],
+    correct: "1 cereal + 1 lácteo bajo en grasa + ½ fruta",
     distractors: ["1 cereal + ½ lácteo + 1 fruta","2 cereales + 1 lácteo + ½ fruta"],
-    teaching: "La tabla considera 6 cucharadas de avena por intercambio; 8 cucharadas equivalen a 1⅓ intercambios.",
+    teaching: "La tabla considera 40 g, 6 cucharadas o ½ taza de avena como un intercambio de cereal.",
   },
   {
     meal: "Desayuno", title: "Pan, leche y plátano",
@@ -66,11 +83,11 @@ const LEVEL_TWO = [
   },
   {
     meal: "Desayuno", title: "Pan con pavo y manzana",
-    description: "½ pan corriente, 50 g de pechuga de pavo y 1 manzana chica.",
-    exchanges: [["cereal",1],["proteinLow",1],["fruit",1]],
-    correct: "1 cereal + 1 carne baja en grasa + 1 fruta",
-    distractors: ["2 cereales + 1 carne + ½ fruta","1 cereal + 2 carnes + 1 fruta"],
-    teaching: "El pan, el pavo magro y la manzana aportan un intercambio de cada grupo.",
+    description: "¾ pan corriente (75 g), 75 g de pechuga de pavo y 1 manzana chica.",
+    exchanges: [["cereal",1.5],["proteinLow",1.5],["fruit",1]],
+    correct: "1½ cereales + 1½ carnes bajas en grasa + 1 fruta",
+    distractors: ["1 cereal + 1 carne + ½ fruta","1½ cereales + 1 carne + 2 frutas"],
+    teaching: "Si 50 g equivalen a una porción, 75 g corresponden a 1½ porciones tanto para el pan como para el pavo.",
   },
   {
     meal: "Colación", title: "Yogurt con manzana",
@@ -81,36 +98,36 @@ const LEVEL_TWO = [
     teaching: "El yogurt diet se clasifica como lácteo bajo en grasa.",
   },
   {
-    meal: "Colación", title: "Leche con naranja",
-    description: "1 taza de leche descremada y 1 naranja regular.",
-    exchanges: [["dairyLow",1],["fruit",1]],
-    correct: "1 lácteo bajo en grasa + 1 fruta",
-    distractors: ["1 lácteo alto en grasa + 1 fruta","½ lácteo + 2 frutas"],
-    teaching: "La taza de leche descremada y la naranja regular representan un intercambio cada una.",
+    meal: "Colación", title: "Leche endulzada con naranja",
+    description: "1 taza de leche descremada, 1 cucharadita de azúcar y 1 naranja regular.",
+    exchanges: [["dairyLow",1],["sugar",1],["fruit",1]],
+    correct: "1 lácteo bajo en grasa + 1 azúcar + 1 fruta",
+    distractors: ["1 lácteo alto en grasa + 1 fruta","½ lácteo + 2 frutas + 1 azúcar"],
+    teaching: "La leche y la naranja representan un intercambio cada una; la cucharadita se contabiliza como un azúcar.",
   },
   {
-    meal: "Colación", title: "Frutillas, yogurt y nueces",
-    description: "1 taza de frutillas, 1 yogurt diet y 25 g de nueces.",
-    exchanges: [["fruit",1],["dairyLow",1],["fatRich",1]],
-    correct: "1 fruta + 1 lácteo bajo en grasa + 1 alimento rico en lípidos",
-    distractors: ["2 frutas + 1 lácteo + ½ grasa","1 fruta + 1 lácteo alto en grasa"],
-    teaching: "Las nueces se contabilizan en el grupo de alimentos ricos en lípidos.",
+    meal: "Colación", title: "Frutillas, yogurt y pan",
+    description: "1 taza de frutillas, 1 yogurt diet y ½ pan corriente.",
+    exchanges: [["fruit",1],["dairyLow",1],["cereal",1]],
+    correct: "1 fruta + 1 lácteo bajo en grasa + 1 cereal",
+    distractors: ["2 frutas + 1 lácteo + ½ cereal","1 fruta + 1 lácteo alto en grasa"],
+    teaching: "Las tres medidas corresponden a un intercambio completo de su respectivo grupo.",
   },
   {
     meal: "Almuerzo", title: "Arroz con pollo y tomate",
-    description: "¾ taza de arroz cocido, 50 g de pollo sin piel, 1 tomate regular y 1 cucharadita de aceite.",
-    exchanges: [["cereal",1],["proteinLow",1],["vegetable",1],["fat",.25]],
-    correct: "1 cereal + 1 carne baja en grasa + 1 verdura + ¼ grasa",
+    description: "¾ taza de arroz cocido, 50 g de pollo sin piel, 1 tomate regular y 2 cucharaditas de aceite.",
+    exchanges: [["cereal",1],["proteinLow",1],["vegetable",1],["fat",.5]],
+    correct: "1 cereal + 1 carne baja en grasa + 1 verdura + ½ grasa",
     distractors: ["1 cereal + 2 carnes + 1 verdura + 1 grasa","½ cereal + 1 carne + 2 verduras"],
-    teaching: "Cuatro cucharaditas de aceite forman un intercambio; una cucharadita corresponde a ¼.",
+    teaching: "Cuatro cucharaditas de aceite forman un intercambio; dos cucharaditas corresponden a ½ porción.",
   },
   {
-    meal: "Almuerzo", title: "Pescado con papa y zanahoria",
-    description: "1 papa cocida regular, 50 g de pescado, ½ taza de zanahoria y 1 cucharadita de aceite.",
-    exchanges: [["cereal",1],["proteinLow",1],["vegetable",1],["fat",.25]],
-    correct: "1 cereal + 1 carne baja en grasa + 1 verdura + ¼ grasa",
-    distractors: ["2 cereales + 1 carne + ½ verdura","1 cereal + 1 carne + 1 verdura + 1 grasa"],
-    teaching: "La papa se contabiliza con cereales; el aceite se expresa como fracción del intercambio.",
+    meal: "Almuerzo", title: "Carne con papa y zanahoria",
+    description: "1 papa cocida regular, 50 g de carne molida alta en grasa y ½ taza de zanahoria.",
+    exchanges: [["cereal",1],["proteinHigh",1],["vegetable",1]],
+    correct: "1 cereal + 1 carne alta en grasa + 1 verdura",
+    distractors: ["2 cereales + 1 carne baja en grasa + ½ verdura","1 cereal + 1 carne baja en grasa + 1 grasa"],
+    teaching: "La papa se contabiliza con cereales y la carne molida indicada como carne alta en grasa.",
   },
   {
     meal: "Almuerzo", title: "Lentejas con arroz y tomate",
@@ -137,12 +154,12 @@ const LEVEL_TWO = [
     teaching: "La leche entera se contabiliza como lácteo alto en grasa.",
   },
   {
-    meal: "Once", title: "Yogurt, plátano y nueces",
-    description: "1 yogurt diet, ½ plátano regular y 25 g de nueces.",
-    exchanges: [["dairyLow",1],["fruit",1],["fatRich",1]],
-    correct: "1 lácteo bajo en grasa + 1 fruta + 1 alimento rico en lípidos",
-    distractors: ["1 lácteo + 2 frutas","1 lácteo alto en grasa + ½ fruta + ½ grasa"],
-    teaching: "Las nueces agregan el intercambio de alimentos ricos en lípidos.",
+    meal: "Once", title: "Yogurt, plátano y pan",
+    description: "1 yogurt diet, ½ plátano regular y ½ pan corriente.",
+    exchanges: [["dairyLow",1],["fruit",1],["cereal",1]],
+    correct: "1 lácteo bajo en grasa + 1 fruta + 1 cereal",
+    distractors: ["1 lácteo + 2 frutas","1 lácteo alto en grasa + ½ fruta + ½ cereal"],
+    teaching: "El yogurt, el plátano y el pan representan un intercambio de cada grupo.",
   },
   {
     meal: "Cena", title: "Fideos con carne y ensalada",
@@ -154,19 +171,19 @@ const LEVEL_TWO = [
   },
   {
     meal: "Cena", title: "Garbanzos con tomate",
-    description: "½ taza de garbanzos cocidos, 1 tomate regular y 1 cucharadita de aceite.",
-    exchanges: [["legume",1],["vegetable",1],["fat",.25]],
-    correct: "1 leguminosa + 1 verdura + ¼ grasa",
+    description: "½ taza de garbanzos cocidos, 1 tomate regular y 2 cucharaditas de aceite.",
+    exchanges: [["legume",1],["vegetable",1],["fat",.5]],
+    correct: "1 leguminosa + 1 verdura + ½ grasa",
     distractors: ["1 cereal + 1 verdura + 1 grasa","2 leguminosas + ½ verdura"],
-    teaching: "Los garbanzos aportan como leguminosa y la cucharadita de aceite equivale a ¼ grasa.",
+    teaching: "Los garbanzos aportan como leguminosa y dos cucharaditas de aceite equivalen a ½ porción de grasa.",
   },
   {
     meal: "Cena", title: "Arroz con atún y lechuga",
     description: "¾ taza de arroz cocido, 60 g de atún al agua y 1 taza de lechuga.",
-    exchanges: [["cereal",1],["proteinLow",1],["vegetable",1]],
-    correct: "1 cereal + 1 carne baja en grasa + 1 verdura",
+    exchanges: [["cereal",1],["proteinLow",1],["freeVegetable",1]],
+    correct: "1 cereal + 1 carne baja en grasa + 1 verdura de libre consumo",
     distractors: ["1 cereal + 2 carnes + ½ verdura","2 cereales + 1 carne + 1 verdura"],
-    teaching: "El atún al agua se contabiliza como carne baja en grasa.",
+    teaching: "El atún al agua se contabiliza como carne baja en grasa y la lechuga como verdura de libre consumo.",
   },
 ].map((item, id) => ({...item, id}));
 
@@ -198,6 +215,21 @@ function totalsFor(item) {
 
 function formulaFor(item) {
   return item.exchanges.map(([key, amount]) => `${amount === 1 ? "" : `${tidy(amount)} × `}${MACROS[key].label}`).join(" + ");
+}
+
+function referenceTable() {
+  return `<details class="reference-table">
+    <summary>Consultar tabla de aporte por porción</summary>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Grupo</th><th>kcal</th><th>HC</th><th>Líp.</th><th>Prot.</th></tr></thead>
+        <tbody>${REFERENCE_ORDER.map(([key, label]) => {
+          const value = MACROS[key];
+          return `<tr><td>${label}</td><td>${value.energy}</td><td>${value.carbs}</td><td>${value.fat}</td><td>${value.protein}</td></tr>`;
+        }).join("")}</tbody>
+      </table>
+    </div>
+  </details>`;
 }
 
 function home() {
@@ -374,6 +406,7 @@ function showNutrientStep(message = "") {
     <div class="case-card mini"><span class="case-icon">${meta[1]}</span><div><p class="food-name">${item.title}</p><p>${item.correct}</p></div></div>
     <p class="step-label">PASO 2 DE 2 · CALCULA</p>
     <h1>¿Cuál es el aporte nutricional total?</h1>
+    ${referenceTable()}
     <form class="nutrient-form" data-form="nutrients">
       <label><span>Energía</span><div><input inputmode="decimal" name="energy" aria-label="Energía en kilocalorías" required><b>kcal</b></div></label>
       <label><span>Hidratos de carbono</span><div><input inputmode="decimal" name="carbs" aria-label="Hidratos de carbono en gramos" required><b>g</b></div></label>

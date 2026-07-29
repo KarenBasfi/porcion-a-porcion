@@ -393,6 +393,59 @@ h1 em { color: var(--orange); font-weight: inherit; }
 .feedback.error { color: #733c2d; border: 1px solid #efc8bb; background: #fff0e9; }
 .feedback.success { color: #205e50; border: 1px solid #bddacb; background: #e7f4eb; }
 
+.reference-table {
+  margin: 16px 0;
+  border: 1px solid #d8e4dc;
+  border-radius: 14px;
+  background: white;
+  text-align: left;
+}
+
+.reference-table summary {
+  padding: 13px 15px;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.table-scroll {
+  max-height: 260px;
+  overflow: auto;
+  border-top: 1px solid #e2e9e3;
+}
+
+.reference-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.reference-table th,
+.reference-table td {
+  padding: 8px 7px;
+  border-bottom: 1px solid #edf0ec;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.reference-table th:first-child,
+.reference-table td:first-child {
+  position: sticky;
+  left: 0;
+  text-align: left;
+  background: white;
+}
+
+.reference-table th {
+  position: sticky;
+  top: 0;
+  color: #536c63;
+  background: #f3f7f1;
+}
+
+.reference-table th:first-child { z-index: 1; background: #f3f7f1; }
+
 .nutrient-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
