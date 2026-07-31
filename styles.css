@@ -161,6 +161,18 @@ h1 em { color: var(--orange); font-weight: inherit; }
 .primary span { float: right; font-size: 20px; }
 .microcopy, .quiet, .source-note { font-size: 12px; color: #7d8f8a; margin: 15px 0 0; }
 
+.author-credit {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin: 22px 0 0;
+  color: #526d65;
+  font-size: 13px;
+}
+
+.author-credit strong { color: var(--ink); }
+.author-credit span { color: var(--orange); font-weight: 900; }
+
 .level-home {
   width: min(100%, 840px);
 }
@@ -607,6 +619,7 @@ h1 em { color: var(--orange); font-weight: inherit; }
   .level-grid { grid-template-columns: 1fr; }
   .level-card { min-height: 250px; }
   .level-home h1 { font-size: 38px; }
+  .author-credit { flex-wrap: wrap; }
   .meal-progress { gap: 4px; }
   .meal-progress span { padding: 5px 7px; font-size: 0; }
   .meal-progress span i { margin-right: 1px; }

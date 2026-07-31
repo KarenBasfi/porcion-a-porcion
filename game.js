@@ -258,6 +258,7 @@ function home() {
         <button class="primary" data-action="start-two">Jugar Nivel 2 <span>→</span></button>
       </article>
     </div>
+    <p class="author-credit"><strong>Karen Basfi-Fer</strong><span>/</span> Universidad Finis Terrae</p>
     <p class="microcopy">Segundo año · Nutrición y Dietética</p>
   </section>`;
 }
